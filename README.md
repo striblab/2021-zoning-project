@@ -2,10 +2,10 @@ The Star Tribune compiled zoning data for 102 communities in the Twin Cities' me
 
 We're using this repository to share not only our data for further research, but also guidance for others interested in doing similar work in your city or metro area.
 
-<a href="https://github.com/striblab/2021-zoning-project/blob/main/methodology.md">Methodology</a>
+<a href="methodology.md">Methodology</a>
 
-<a href="https://github.com/striblab/2021-zoning-project/blob/main/howto.md">Advice for others</a>
+<a href="howto.md">Advice for others</a>
 
-<a href="https://github.com/striblab/2021-zoning-project/tree/main/data">Data</a>
+<a href="data/">Data</a>
 
 If you have questions contact MaryJo Webster, maryjo.webster@startribune.com, or Michael Corey, michael.corey@startribune.com
