@@ -2,7 +2,7 @@
 
 We learned a lot in our quest to study residential zoning and segregation in the Twin Cities area and we hope to see other journalists or academic researchers do the same in other parts of the country. To further that cause, we thought we’d share advice to help you get started.
 
-Our original goal was to identify how much “exclusionary zoning” exists in the Twin Cities and we later expanded that to also measure the relationship between zoning and racial segregation. 
+Our original goal was to identify how much “exclusionary zoning” exists in the Twin Cities and we later expanded that to also measure the relationship between zoning and racial segregation.
 
 There are several zoning practices that are often defined as exclusionary zoning. The biggest one is simply whether single-family detached homes are kept separate in their own districts, apart from denser forms of housing. But there are more detailed zoning rules that are known to drive up the cost of a house or even an apartment, such as minimum lot size for a house or the maximum number of apartment units that can be built per acre or the minimum amount of parking required (and whether that needs to be a garage).
 
@@ -11,15 +11,15 @@ Our main goal when we started on this was to measure the percentage of residenti
 Just simply collecting that for your city or metro area would be a way you can tell a powerful story without doing quite as much work as we did.
 
 <h2>Getting GIS shapefiles</h2>
-The first thing you need to do is obtain GIS shapefiles that identify the zoning designations in the city or cities that you want to study. Your city should have either a planning department or a community development department that would be the best place to start. Sometimes we found these officials forwarded us to GIS professionals who worked for the city or an outside contractor that does the zoning and/or GIS work for the city. Small cities were far more likely to have a contractor and it turned out that there were just a few contractors who did work for many cities. 
+The first thing you need to do is obtain GIS shapefiles that identify the zoning designations in the city or cities that you want to study. Your city should have either a planning department or a community development department that would be the best place to start. Sometimes we found these officials forwarded us to GIS professionals who worked for the city or an outside contractor that does the zoning and/or GIS work for the city. Small cities were far more likely to have a contractor and it turned out that there were just a few contractors who did work for many cities.
 
-If you do have a situation where the contractor has control of that data, make sure you know your state’s public records law in terms of access to government data through a third-party vendor. In Minnesota, the vendors are required to provide the data, however, they could charge for their time and the city would likely pass that cost along to you. (We only had to pay for one situation like this and it ended up being only $57). 
+If you do have a situation where the contractor has control of that data, make sure you know your state’s public records law in terms of access to government data through a third-party vendor. In Minnesota, the vendors are required to provide the data, however, they could charge for their time and the city would likely pass that cost along to you. (We only had to pay for one situation like this and it ended up being only $57).
 
-We had some very small cities that didn’t have shapefiles and somehow their contractors no longer had the GIS files used to make the last zoning maps about a decade earlier. Instead of fighting with them, we took the PDF versions of their maps and carefully matched them to parcel data that we had gotten from the county. Luckily, these were all cities that haven’t changed in decades and had less than four zoning districts. 
+We had some very small cities that didn’t have shapefiles and somehow their contractors no longer had the GIS files used to make the last zoning maps about a decade earlier. Instead of fighting with them, we took the PDF versions of their maps and carefully matched them to parcel data that we had gotten from the county. Luckily, these were all cities that haven’t changed in decades and had less than four zoning districts.
 
 And there were three very small cities that we gave up on altogether because they didn’t even have a PDF version of their latest zoning map, let alone shapefiles.
 
-The ideal shapefile to request would be polygon, parcel-level that has a field identifying the zoning for each parcel. We found that most cities have this because they need to be able to easily identify the zoning on a parcel if someone comes along with a proposal to make changes to it. 
+The ideal shapefile to request would be polygon, parcel-level that has a field identifying the zoning for each parcel. We found that most cities have this because they need to be able to easily identify the zoning on a parcel if someone comes along with a proposal to make changes to it.
 
 Specifically ask that they include the property ID number (in Minnesota they are referred to as a PIN). This might come in handy if you need to match it back to other parcel data that might have things like property values, building types or other information an assessor might keep.
 
@@ -34,17 +34,17 @@ The big thing that tripped us up -- that we didn’t expect --  was that some ci
 We reached out to every city to ensure we had all the overlay files and to also ask if they could identify which areas were residential and which were commercial (a PUD could be used for anything), so we could at least determine if any of this land was non-residential. In the end, some of this land is counted as “residential” but we weren’t able to determine whether any of it was zoned solely for single-family. Anecdotally, we heard that most of the PUD land was being used for subdivisions, often single-family homes with a few townhomes tucked in along the major roadways, and we confirmed that by looking at land use data that is compiled by the Met Council. As a result, we think our calculation of single-family zoning is conservative.
 
 If you are planning to combine shapefiles from multiple cities, you’ll want to make sure they are all in the same projection and that may require running some conversions in your GIS software.
- 
-If you plan to collect data from the entire metro area, think carefully about what cities you want to include. Our metro area technically includes townships (which don’t always have zoning) and rural cities that are quite different -- and separate -- from the urban and suburban areas. 
+
+If you plan to collect data from the entire metro area, think carefully about what cities you want to include. Our metro area technically includes townships (which don’t always have zoning) and rural cities that are quite different -- and separate -- from the urban and suburban areas.
 
 Our metro has a regional organization called the Metropolitan Council that runs the regional sewer system and that boundary is a means of controlling outward growth of the metro. In other words, that boundary kind of represents where we have development versus where we still have mainly cornfields. We decided to stick with cities that are inside that boundary.
 
 <h2>Standardizing and merging</h2>
 Next step is to standardize all those zoning codes. We did that by creating a crosswalk file rather than adding new fields to each shapefile. This crosswalk was a spreadsheet with one row for each zoning district in each city (all of the ones that show up in the shapefiles) and then we manually typed in additional information, including assigning each code to various categories. There probably are more sophisticated ways to do this -- especially if you have multiple people involved. It worked for us because only one person was doing the work.
 
-Another key to success was designing repeatable, scripted import and export processes that could be run many times as errors were found or we altered our methodology. 
+Another key to success was designing repeatable, scripted import and export processes that could be run many times as errors were found or we altered our methodology.
 
-We created a Django app to handle importing, reprojection, storage and geographic processing of the data. We used the crosswalk to import each shapefile into a single shared table of all the parcels in the metro area, with standardized zoning codes. 
+We created a Django app to handle importing, reprojection, storage and geographic processing of the data. We used the crosswalk to import each shapefile into a single shared table of all the parcels in the metro area, with standardized zoning codes.
 
 We used a large PostGIS-enabled Amazon RDS instance, which was costly but allowed us to efficiently process the large amount of spatial data. We designed each table to include both a full-resolution and simplified version of each geometry. We used the full-resolution geometry for analysis, but when exporting metro-level data for display and graphics, using the simplified geometries was much faster. We created unified zoning areas for each city to avoid having to process parcel-level data for each query.
 
@@ -56,27 +56,27 @@ The survey, for example, only asked about the “largest” single-family zoning
 
 Our intention with the crosswalk was to just put each residential district into a bucket depending on the most dense form of housing allowed by right. What we should have done is built a full dataset with more details for every residential zoning district. So, we’ll offer up some advice here with that in mind.
 
-The crosswalk should have one row for every zoning district identified in each shapefile. Columns should include city name, the shapefile name, the zoning code used in the shapefile (exactly as it appears because you’ll be doing some joining), and then a series of fields that you’ll populate based on what you find in the city’s zoning ordinance. 
+The crosswalk should have one row for every zoning district identified in each shapefile. Columns should include city name, the shapefile name, the zoning code used in the shapefile (exactly as it appears because you’ll be doing some joining), and then a series of fields that you’ll populate based on what you find in the city’s zoning ordinance.
 
 For example, you’ll probably want one category to simply identify residential versus non-residential. And then the key category we had was tagging the residential districts as either single-family, middle housing, multi-family,  mixed use or PUD.  More about the nuances of those category assignments below.
 
 We also recommend you collect the following:
-For single-family zoning districts: 
+For single-family zoning districts:
 * Minimum lot size per unit in square feet (and/or minimum lot width)
 * Is a garage required? If so, is there a minimum number of spaces required? Or minimum footprint size?
 * Minimum setback from the street in feet. (no need to collect side or rear setbacks)
 * Minimum floor area requirement in square feet (some cities simply follow the state building code on this; and this is less common than the lot size)
-* 
-For each multi-family district: 
+*
+For each multi-family district:
 * Maximum density (ideally expressed in units per acre). If they don’t have one, the minimum lot size for a two-bedroom unit gets you a rough approximation of how many units would fit on an acre.
 * Open space requirement. This might be a percentage of the land or a certain amount per unit.
 * Height limitation, listed in stories or feet.
 
-Also, give yourself a notes column where you can write down anything unusual and a column to identify whether something more dense would be allowed under conditions, or with a conditional use permit or other special permission. 
+Also, give yourself a notes column where you can write down anything unusual and a column to identify whether something more dense would be allowed under conditions, or with a conditional use permit or other special permission.
 
 
 <h2>Reading city ordinances</h2>
-The place to find all this information is in the zoning section of the city ordinances. 
+The place to find all this information is in the zoning section of the city ordinances.
 
 City ordinances are consistently located online for Minnesota cities. Many are stored on national platforms such as <a href="https://library.municode.com/">Municode.</a> (FYI: we wished we had downloaded the key sections of code as PDFs since our project ended up taking far longer than we thought due to the pandemic and some cities altered their codes in the interim.)
 
@@ -86,11 +86,11 @@ It’s possible that you might have a city that uses other types of zoning. An i
 
 Reading zoning ordinances is a bit daunting at first. However, it was kind of eerie how many of them were laid out in an almost identical manner. Once we got through a few cities, it got easier and faster due to this consistency. Every once in awhile we’d come across one that wasn’t in this cookie-cutter fashion and those took longer to read. (Pro tip: don’t try to read too many in one day! It’s mind-numbing.)
 
-We almost always found a section defining each zoning district, (i.e. R1, B1, etc), followed by a description of the district, the “permitted uses” and the “conditional uses.” In many of the residential districts it might also have a section on permitted accessories (i.e. sheds, etc). In the commercial districts it might list the various kinds of businesses that were allowed or not allowed. 
+We almost always found a section defining each zoning district, (i.e. R1, B1, etc), followed by a description of the district, the “permitted uses” and the “conditional uses.” In many of the residential districts it might also have a section on permitted accessories (i.e. sheds, etc). In the commercial districts it might list the various kinds of businesses that were allowed or not allowed.
 
 We looked for the “permitted uses” or the “by right” uses. Most single-family districts simply listed “single-family detached home” as the only permitted use and then would have a list of conditional uses, such as daycares or churches.
 
-Quite often a zoning district that allowed multi-family or even townhomes might say those were only allowed if additional conditions were met or that it required a conditional use permit. 
+Quite often a zoning district that allowed multi-family or even townhomes might say those were only allowed if additional conditions were met or that it required a conditional use permit.
 
 In hindsight, we should have included a category that was something like “Multi-family-special permission,” since it was common that there was a district that only allowed apartments -- no other forms of housing -- but everything still required a conditional use permit or a Planned Unit Development agreement.
 
@@ -98,15 +98,15 @@ We also had a “middle” housing bucket that fit all the things that are not s
 
 The fourplexes were the most tricky. There were districts that allowed “up to 4 units,” and then there were districts that allowed “4 units or more.” The places that allowed up to four fell into the middle housing bucket, while the other went into the multi-family bucket. Some zoning codes didn’t specify, but would say that it allowed apartment buildings or multi-family housing and then would have some density cap requirement, such as no more than 12 units per acre. We categorized these areas as multi-family.
 
-Some districts allow almost everything -- single-family detached, townhomes, duplexes, and even some apartment complexes (maybe not high-rises, though). In those cases, we categorized it as a multi-family district because that’s the most dense form of housing allowed there. 
+Some districts allow almost everything -- single-family detached, townhomes, duplexes, and even some apartment complexes (maybe not high-rises, though). In those cases, we categorized it as a multi-family district because that’s the most dense form of housing allowed there.
 
 More commonly though, cities had clear delineations: a single-family district (or two), an area where you could build townhomes, and another area where you could build apartments. Sometimes there were separate single-family districts each with different minimum lot sizes.
 
-What we learned is that a lot of these zoning districts reflect the trend at the time they were created. So for example, one created prior to the 1950s probably has minimum lot sizes of 5,000 or 8,000 square feet, while one created in the boom of the 1990s probably has a minimum around 20,000 square feet. Newer developments are moving toward smaller lot sizes again, although usually still somewhere around 10,000 square feet. 
+What we learned is that a lot of these zoning districts reflect the trend at the time they were created. So for example, one created prior to the 1950s probably has minimum lot sizes of 5,000 or 8,000 square feet, while one created in the boom of the 1990s probably has a minimum around 20,000 square feet. Newer developments are moving toward smaller lot sizes again, although usually still somewhere around 10,000 square feet.
 
 Most cities follow a similar pattern in their codes -- R-1, R-2, etc. for residential. Perhaps RR for rural residential (although that was also sometimes used for railroad) or RE for residential estate. I found that cities that allowed mobile homes usually had a separate zone for those. A few cities use “LDR” for low-density residential and “MDR” (medium) and “HDR” (high).
 
-Some used “MF” or just an “M” for multi-family (but some also used M for manufacturing).   B or C for business or commercial. I for industrial, or perhaps LI for light industrial. Mixed use districts were often either “MU” or “MX” but these were far more likely to use different letters that weren’t as obvious. 
+Some used “MF” or just an “M” for multi-family (but some also used M for manufacturing).   B or C for business or commercial. I for industrial, or perhaps LI for light industrial. Mixed use districts were often either “MU” or “MX” but these were far more likely to use different letters that weren’t as obvious.
 
 Some cities identified “public districts” or “institutional districts” for land that is publicly owned for things like colleges, city hall or schools. Parks were sometimes identified outright as parks, other times they were listed as public districts, and sometimes they were even just lumped into the neighboring residential district.
 
@@ -137,41 +137,16 @@ We also found that Asians are far more likely to be homeowners and living in tho
 
 We also tried looking at the city level. For example, what’s the demographic makeup of city A that has a “high” level of exclusionary zoning versus city B that has a “low” level of exclusionary zoning?   There are a handful of cities that inarguably have high levels of exclusionary zoning (single-family is often the only housing options in those cities) and then there are cities at the other end of the spectrum that allow duplexes in any part of the city or have a high share of land zoned for multi-family housing. But in the middle were a huge number of cities that didn’t neatly fall into those two buckets. And at the city level, the demographic makeup is really washed out. We could see cities with an above-average share of people of color, but they all seemed to be living in just one part of the city.
 
-We ended up with two analyses -- one that’s more straightforward and easier for readers to understand and another with more rigor, but harder to explain. Both showed the same thing, though: people of color -- but especially Black and Latino -- are disproportionately living in areas zoned for multi-family housing. 
+We ended up with two analyses -- one that’s more straightforward and easier for readers to understand and another with more rigor, but harder to explain. Both showed the same thing, though: people of color -- but especially Black and Latino -- are disproportionately living in areas zoned for multi-family housing.
 
-For the simpler analysis, we did a spatial join between the parcel zoning data and a Census block group map to determine what percentage of each block group was zoned for each type of housing. Then from that block group map, we categorized the block groups. One with 90% or more single-family only zoning was labeled as single-family. One with 40% or more multi-family was zoned as multi-family, since multi-faily housing doesn’t need as much land. Many block groups fell somewhere between these two ends, often with a mix of single-family and middle housing. 
+For the simpler analysis, we did a spatial join between the parcel zoning data and a Census block group map to determine what percentage of each block group was zoned for each type of housing. Then from that block group map, we categorized the block groups. One with 90% or more single-family only zoning was labeled as single-family. One with 40% or more multi-family was zoned as multi-family, since multi-faily housing doesn’t need as much land. Many block groups fell somewhere between these two ends, often with a mix of single-family and middle housing.
 
 Then we calculated the percentage of each racial or ethnic group’s population living in each type of neighborhood (single-family, multi-family, or the mixed ones that fall in the middle). We also compared white non-Hispanic to all the other groups combined. If people are evenly distributed you would expect these numbers to be fairly close to each other. But we found that, for example, nearly 25% of Black people live in areas zoned for multi-family compared to just 8% of white people.
 
 The more rigorous analysis was a regression analysis that we did in partnership with <a href="https://www.mercatus.org/scholars/salim-furth">Salim Furth</a>, senior research fellow and director of the Urbanity project at the Mercatus Center at George Mason University.
 
-This analysis, a Generalized Spatial Two-Stage Least Squares regression, was based on the same block group level data we used above. The dependent variable was the non-white population and the independent variable was the percent of residential land zoned in each category. We controlled for median age of the housing stock, whether a block group was in the central cities (Minneapolis and St. Paul) and the distance from its closest central city (since density tends to fade the farther out you go). 
+This analysis, a Generalized Spatial Two-Stage Least Squares regression, was based on the same block group level data we used above. The dependent variable was the non-white population and the independent variable was the percent of residential land zoned in each category. We controlled for median age of the housing stock, whether a block group was in the central cities (Minneapolis and St. Paul) and the distance from its closest central city (since density tends to fade the farther out you go).
 
 To further mitigate the margins of error in the demographic data, we used a smoothing technique that averages the population shares based on the neighboring block groups. Ultimately, our regression yielded the same results whether we used this smoothed data or the original block group data.
 
 It’s important to note that we found little research that we could mirror our work on, most likely due to the fact that this kind of detailed zoning data is hard to come by. There are quite a few academic papers out there linking segregation and zoning but they tend to use metro-level metrics that define metro areas by the level of zoning regulation, finding those with more regulation tend to have more segregation.
-
-
-<h2>Suggested reading</h2>
-
-<a href="https://www.tandfonline.com/doi/full/10.1080/01944363.2019.1651216">“It’s time to end single-family zoning,”</a> Michael Manville, Paavo Monkkonen, Michael Lens
-
-<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3507803">“The zoning strait-jacket: The freezing of American neighborhoods of single-family homes,”</a> Robert Ellickson.
-
-<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3472145">“Zoning and the cost of housing: evidence from Silicon Valley, Greater New Haven and Greater Austin,”</a> Robert Ellickson
-
-<a href="https://www.tandfonline.com/doi/abs/10.1080/01944363.2020.1828146">“Exclusionary zoning: Origins, open suburbs and contemporary debates,”</a> Andrew Whittemore
-
-Various papers and articles by <a href="https://www.mercatus.org/scholars/salim-furth">Salim Furth</a>
-
-<a href="https://belonging.berkeley.edu/decoding-zoning">“Decoding zoning,”</a> the Othering & Belonging Institute
-
-<a href="https://belonging.berkeley.edu/segregationinthebay">“Racial segregation in the Bay Area,”</a> the Othering & Belonging Institute
-
-<a href="https://ternercenter.berkeley.edu/research-and-policy/land-use-politics-housing-costs-and-segregation-in-california-cities/">“Land use politics, housing costs and segregation in California cities,”</a> Jonathan Rothwell
-
-<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3632084/">“Density zoning and class segregation in U.S. Cities,”</a> Jonathan Rothwell
-
-<a href="https://www.amazon.com/Color-Law-Forgotten-Government-Segregated-ebook/dp/B01M8IWJT2">“The Color of Law” (book)</a>, Richard Rothstein
-
-<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3792544">“Zoning by a thousand cuts,”</a> Sara Bronin

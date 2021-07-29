@@ -5,5 +5,6 @@ We're using this repository to share not only our data for further research, but
 - [Methodology](methodology.md)
 - [Advice for others](howto.md)
 - [Data](data.md)
+- [Suggested reading](reading.md)
 
 If you have questions contact MaryJo Webster, [maryjo.webster@startribune.com](mailto:maryjo.webster@startribune.com), or Michael Corey, [michael.corey@startribune.com](mailto:michael.corey@startribune.com)
