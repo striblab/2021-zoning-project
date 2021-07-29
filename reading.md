@@ -1,3 +1,8 @@
+- [Overview](README.md)
+- [Methodology](methodology.md)
+- [Advice for others](howto.md)
+- [Data](data.md)
+
 # Suggested reading
 
 <a href="https://www.tandfonline.com/doi/full/10.1080/01944363.2019.1651216">“It’s time to end single-family zoning,”</a> Michael Manville, Paavo Monkkonen, Michael Lens

@@ -1,3 +1,8 @@
+- [Overview](README.md)
+- [Methodology](methodology.md)
+- [Data](data.md)
+- [Suggested reading](reading.md)
+
 <h1>Advice for others wanting to replicate our work</h1>
 
 We learned a lot in our quest to study residential zoning and segregation in the Twin Cities area and we hope to see other journalists or academic researchers do the same in other parts of the country. To further that cause, we thought we’d share advice to help you get started.
