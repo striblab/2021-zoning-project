@@ -1,3 +1,7 @@
+- [Methodology](methodology.md)
+- [Advice for others](howto.md)
+- [Suggested reading](reading.md)
+
 # Data and documentation
 
 The Star Tribune has compiled zoning and other related data related to 102 Twin Cities-area municipalities into simplified files for analysis.
