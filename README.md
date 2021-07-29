@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+# Star Tribune - Zoning in the Twin Cities
+Data, methodology and advice for others interested in replicating the Star Tribune's analysis of zoning data in the Twin Cities.
 
-You can use the [editor on GitHub](https://github.com/striblab/2021-zoning-project/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+The Star Tribune compiled zoning data for 102 communities in the Twin Cities' metro area in 2019 in order to evaluate the share of residential land in the region that is zoned solely for single-family detached homes. Minneapolis had attracted national attention in 2018 when the city council voted to allow duplexes or triplexes in residential zoning districts that had previously only allowed single-family homes. Zoning is done by local governments, usually at the city level, and we found that we would have to gather this data from every city and compile it ourselves. We completed that work of collecting the data by the end of 2019, but had to put our story on hold until later in 2020 due to other major news events.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+We're using this repository to share not only our data for further research, but also guidance for others interested in doing similar work in your city or metro area. 
 
-### Markdown
+<a href="https://github.com/striblab/2021-zoning-project/blob/main/methodology.md">Methodology</a>
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<a href="https://github.com/striblab/2021-zoning-project/blob/main/howto.md">Advice for others</a>
 
-```markdown
-Syntax highlighted code block
+<a href="https://github.com/striblab/2021-zoning-project/tree/main/data">Data</a>
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/striblab/2021-zoning-project/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+If you have questions contact MaryJo Webster, maryjo.webster@startribune.com, or Michael Corey, michael.corey@startribune.com
