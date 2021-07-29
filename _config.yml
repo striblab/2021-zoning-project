@@ -1,5 +1,5 @@
 # theme: jekyll-theme-slate
-theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
 title: Zoning in the Twin Cities
 description: Data, methodology and advice for others interested in replicating the Star Tribune's analysis of zoning data in the Twin Cities
 show_downloads: false
