@@ -2,10 +2,10 @@ The Star Tribune compiled zoning data for 102 communities in the Twin Cities' me
 
 We're using this repository to share not only our data for further research, but also guidance for others interested in doing similar work in your city or metro area.
 
-<a href="methodology.md">Methodology</a>
+[Methodology](methodology.md)
 
-<a href="howto.md">Advice for others</a>
+[Advice for others](howto.md)
 
-<a href="data/">Data</a>
+[Data](data.md)
 
 If you have questions contact MaryJo Webster, maryjo.webster@startribune.com, or Michael Corey, michael.corey@startribune.com
