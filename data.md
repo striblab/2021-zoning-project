@@ -39,7 +39,7 @@ The Star Tribune categorized each city's zoning codes into several standardized 
 |PUD-unknown|Areas under Planned Unit Development Agreement(s) where the Star Tribune couldn't identify whether the intended development would be residential, non-residential or mixed use. Not included in our residential calculations.|
 
 ### Fields in the data
-#### city_zoning_sizes.csv
+#### [city_zoning_sizes.csv](https://static.startribune.com/news/projects/all/2021-zoning/city_zoning_sizes.csv)
 City-level zoning statistics, derived from city parcel data. Note that each standardized zoning type may appear more than once in each city, if more than one local code has been determined to match the standardized zoning type. Data collected in 2019.
 
 |Column name|Format|Description|
@@ -52,8 +52,20 @@ City-level zoning statistics, derived from city parcel data. Note that each stan
 |pct_res_land_area|float|Percentage of city's total residential land area that has this zoning type. (Calculated for non-residential zoning types too, but probably not useful for those.)|
 |zone_area_acres|float|Area the city with this zoning code, in acres.|
 
+#### [city_zones_dissolved.shp](https://static.startribune.com/news/projects/all/2021-zoning/city_zones_dissolved.zip)  (101 MB, zipped)
 
-#### county_parcel_zones_dissolved.csv and county_parcel_zones_dissolved.shp
+This shapefile shows the Star Tribune's categorization of zoning types throughout the metro, with zoning types dissolved to the city level for faster rendering. Minimum lot sizes per unit included for residential zoning types. Minneapolis "only detached" zones have been manually converted to "two family" to account for changes in the city's zoning after the data was retrieved. Single family zones with a minimum lot size per unit greater than or equal to 20 acres have been reclassified as "rural residential" and are not included in the stories' maps or analysis.
+
+|Column name|Format|Description|
+|---|---|---|
+|id|integer|Database ID|
+|city_name|string|City name|
+|zone_type|string|Star Tribune standardized zoning type (see above)|
+|min_lot_sz|string|Minimum lot size per unit, in square feet. Only filled out for residential zones.|
+|zone_area|string|Area of the dissolved zone, in square meters|
+
+
+#### [county_parcel_zones_dissolved.csv](https://static.startribune.com/news/projects/all/2021-zoning/county_parcel_zones_dissolved.csv) (93 MB) and [county_parcel_zones_dissolved.shp](https://static.startribune.com/news/projects/all/2021-zoning/county_parcel_zones_dissolved.zip) (136 MB, zipped)
 
 A parcel-level dataset including a standardized zoning type, block group identifiers, year built and property values, generated from county parcel data maintained by [MetroGIS](https://www.metrogis.org/how-do-i-get/parcel-data.aspx) and U.S. Census TIGER files. Some counties fill out some fields more completely than other counties do. Shapefile field names are the same as CSV field names, but clipped to 10 characters. We have filtered out stacked parcels (often in areas with mobile homes, sometimes with condos) to avoid double-counting areas. Some parcel IDs appear more than once in the data if they cross city boundaries. Parcel data retrieved November 2019. Note: County-provided and city-provided parcel data will not always match depending on when the data was acquired and differences in city and county data maintenance practices.
 
@@ -71,5 +83,5 @@ A parcel-level dataset including a standardized zoning type, block group identif
 |est_land_value|integer|Estimated land value|
 |est_total_value|integer|Estimated combined value for land and buildings|
 |fin_sq_ft|integer|Finished square feet on this parcel|
-|year_built|integer|TK TK |
+|year_built|integer|Year that the current structure was built on this parcel|
 |zone_area_acres|float|Area of the parcel, in acres. Derived from geometry.|
