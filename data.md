@@ -27,7 +27,7 @@ The Star Tribune categorized each city's zoning codes into several standardized 
 |Zoning type|Description|
 |---|---|
 |only detached|Zoning districts that only allow single-family detached homes as a permitted use. Categorized as residential.|
-|rural residential|Zoning districts that only allow single-family detached homes but have minimum lot size requirements exceeding 5 acres. Many of these are labeled in zoning codes as "intended for future development" and require lots to be divided for sale at no less than 10, 20 or even 40 acres. Not included in our residential calculations.|
+|rural residential|Zoning districts that only allow single-family detached homes but have minimum lot size requirements exceeding 5 acres. Many of these are labeled in zoning codes as "intended for future development" and require lots to be divided for sale at no less than 10, 20 or even 40 acres. Included in our residential calculations and counted as single-family zoning.|
 |middle housing|Zoning districts that allow "middle" housing as the most dense form of housing. This includes townhomes, duplexes, triplexes, fourplexes and mobile homes. Often these areas also allow single-family detached homes, as well. Categorized as residential.|
 |MF residential|Multi-family residential zoning districts that allow apartment complexes of four units or more as the most dense form of housing. Categorized as residential.|
 |mixed|Areas allowing both residential and commercial uses. Typically the residential uses were solely multi-family housing. Categorized as residential.|
